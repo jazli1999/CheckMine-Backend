@@ -7,6 +7,7 @@ const AppDataSource = new DataSource({
   type: 'sqlite',
   database: process.env.DB_PATH,
   entities: ['src/entity/*.ts'],
+  logging: true,
 });
 
 export default AppDataSource;

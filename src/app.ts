@@ -3,6 +3,7 @@ import { Request, Response } from 'express';
 import { config } from 'dotenv';
 import AppDataSource from './DataSource';
 import { Offer } from './entity/offer.entity';
+import * as controllers from './controller';
 
 config();
 
@@ -19,6 +20,8 @@ AppDataSource.initialize().then(() => {
     });
     res.status(200).send(response);
   });
+
+  app.get('/outbounddepartureairports', controllers.getAllOutboundDepartureAirports);
 
   // start express server
   app.listen(process.env.PORT);
