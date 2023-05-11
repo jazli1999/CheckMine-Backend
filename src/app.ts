@@ -29,6 +29,7 @@ AppDataSource.initialize().then(() => {
   );
 
   app.get('/sampleOffers', controllers.getSampleOffers);
+  app.get('/offers', controllers.getOffers);
 
   // start express server
   app.listen(process.env.PORT);

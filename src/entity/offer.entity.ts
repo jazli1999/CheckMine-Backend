@@ -17,26 +17,26 @@ export class Offer {
   @Column()
   price: number;
 
-  @Column()
-  outbounddeparturedatetime: string;
+  @Column({ type: 'timestamp' })
+  outbounddeparturedatetime: Date;
 
   @Column()
   outbounddepartureairport: string;
 
-  @Column()
-  outboundarrivaldatetime: string;
+  @Column({ type: 'timestamp' })
+  outboundarrivaldatetime: Date;
 
   @Column()
   outboundarrivalairport: string;
 
-  @Column()
-  inbounddeparturedatetime: string;
+  @Column({ type: 'timestamp' })
+  inbounddeparturedatetime: Date;
 
   @Column()
   inbounddepartureairport: string;
 
-  @Column()
-  inboundarrivaldatetime: string;
+  @Column({ type: 'timestamp' })
+  inboundarrivaldatetime: Date;
 
   @Column()
   inboundarrivalairport: string;
@@ -45,8 +45,11 @@ export class Offer {
   mealtype: string;
 
   @Column()
-  oceanview: number;
+  oceanview: boolean;
 
   @Column()
   roomtype: string;
+
+  @Column()
+  duration: number;
 }
