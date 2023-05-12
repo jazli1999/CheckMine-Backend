@@ -23,13 +23,9 @@ AppDataSource.initialize().then(() => {
     res.status(200).send(response);
   });
 
-  app.get(
-    '/outbounddepartureairports',
-    controllers.getAllOutboundDepartureAirports
-  );
-
   app.get('/sampleOffers', controllers.getSampleOffers);
   app.get('/offers', controllers.getOffers);
+  app.get('/hotels/:id/offers', controllers.getHotelOffers);
 
   // start express server
   app.listen(process.env.PORT);
