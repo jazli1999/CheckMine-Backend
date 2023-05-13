@@ -66,6 +66,20 @@ export const getHotelOffers = async (req: Request, res: Response) => {
   const hotel = await AppDataSource.getRepository(Hotel).findOneBy({
     hotelid: parseInt(id),
   });
+  const count = await AppDataSource.getRepository(Offer)
+    .createQueryBuilder('offer')
+    .where({
+      hotelid: id,
+      [EntityColumns.OUT_DEP_AIRPORT]: airport,
+      duration: Number(duration),
+      [EntityColumns.IN_ARR_AIRPORT]: airport,
+      countadults: Number(adults),
+      countchildren: Number(children),
+      [EntityColumns.OUT_DEP_DATETIME]: MoreThanOrEqual(start),
+      [EntityColumns.IN_ARR_DATETIME]: LessThanOrEqual(end),
+    })
+    .getCount();
+
   const offers = await AppDataSource.getRepository(Offer)
     .createQueryBuilder('offer')
     .where({
@@ -82,5 +96,5 @@ export const getHotelOffers = async (req: Request, res: Response) => {
     .take(Number(limit))
     .getRawMany();
 
-  res.status(200).send({ hotel, offers });
+  res.status(200).send({ hotel, count, offers });
 };
