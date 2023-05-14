@@ -92,6 +92,7 @@ export const getHotelOffers = async (req: Request, res: Response) => {
       [EntityColumns.OUT_DEP_DATETIME]: MoreThanOrEqual(start),
       [EntityColumns.IN_ARR_DATETIME]: LessThanOrEqual(end),
     })
+    .orderBy({ offer_price: 'ASC' })
     .skip((Number(page) - 1) * Number(limit))
     .take(Number(limit))
     .getRawMany();
