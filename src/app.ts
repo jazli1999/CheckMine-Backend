@@ -16,13 +16,15 @@ AppDataSource.initialize().then(() => {
 
   // register routes
 
-  app.get('/', async function (req: Request, res: Response) {
+  app.get('/', async function (_: Request, res: Response) {
     const response = await AppDataSource.getRepository(Offer).find({
       where: { id: 1 },
     });
     res.status(200).send(response);
   });
-
+  app.get('/healthcheck', async function (_: Request, res: Response) {
+    res.status(200).send('ok');
+  });
   app.get('/sampleOffers', controllers.getSampleOffers);
   app.get('/offers', controllers.getOffers);
   app.get('/hotels/:id/offers', controllers.getHotelOffers);
