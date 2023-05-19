@@ -11,6 +11,9 @@ const AppDataSource = new DataSource({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE,
   entities: ['src/entity/*.ts'],
+  ssl: {
+    ca: process.env.SSL_CERT,
+  },
   logging: true,
 });
 
